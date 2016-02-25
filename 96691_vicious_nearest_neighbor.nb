@@ -1,0 +1,861 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34436,        852]
+NotebookOptionsPosition[     33352,        810]
+NotebookOutlinePosition[     33697,        825]
+CellTagsIndexPosition[     33654,        822]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Rifle Problem", "Title",
+ CellChangeTimes->{{3.6540110464863243`*^9, 3.6540110492381835`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"RifleProblem", "[", "n_Integer", "]"}], ":=", 
+  RowBox[{"DynamicModule", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"rifle", ",", "shot", ",", "nearest"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"rifle", "=", 
+      RowBox[{"RandomReal", "[", 
+       RowBox[{"1", ",", 
+        RowBox[{"{", 
+         RowBox[{"n", ",", "2"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Deploy", "[", "\[IndentingNewLine]", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"Arrow", "[", 
+            RowBox[{"shot", "=", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Part", "[", 
+                  RowBox[{"rifle", ",", "j"}], "]"}], ",", 
+                 RowBox[{"First", "[", 
+                  RowBox[{"Nearest", "[", 
+                   RowBox[{
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "i"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Delete", "[", 
+                    RowBox[{
+                    RowBox[{"Range", "[", "n", "]"}], ",", "j"}], "]"}]}], 
+                    "}"}]}], "]"}], ",", 
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "j"}], "]"}]}], "]"}], "]"}]}], 
+                "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"j", ",", "n"}], "}"}]}], "]"}]}], "]"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Opacity", "[", "0.5", "]"}], ",", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"With", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"i", "=", "i"}], "}"}], ",", 
+                RowBox[{"Dynamic", "[", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"Not", "@", 
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"shot", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "i"}], "]"}]}], "]"}]}], ",", 
+                   RowBox[{"Disk", "[", 
+                    RowBox[{
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "i"}], "]"}], ",", 
+                    RowBox[{"EuclideanDistance", "[", 
+                    RowBox[{
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "i"}], "]"}], ",", 
+                    RowBox[{"Part", "[", 
+                    RowBox[{"shot", ",", "i", ",", "2"}], "]"}]}], "]"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"{", "}"}]}], "]"}], "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"With", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"i", "=", "i"}], "}"}], ",", 
+              RowBox[{"Locator", "[", 
+               RowBox[{
+                RowBox[{"Dynamic", "[", 
+                 RowBox[{"Part", "[", 
+                  RowBox[{"rifle", ",", "i"}], "]"}], "]"}], ",", 
+                RowBox[{"Dynamic", "[", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"shot", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+                    RowBox[{"Part", "[", 
+                    RowBox[{"rifle", ",", "i"}], "]"}]}], "]"}], ",", 
+                   RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[FreakedSmiley]\>\"", ",", "36", ",", 
+                    RowBox[{"Background", "\[Rule]", "Red"}]}], "]"}], ",", 
+                   RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[HappySmiley]\>\"", ",", "36", ",", 
+                    RowBox[{"Background", "\[Rule]", "Green"}]}], "]"}]}], 
+                  "]"}], "]"}]}], "]"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], "\[IndentingNewLine]",
+          "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "\[Rule]", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"Framed", "[", 
+             RowBox[{"\"\<Survivors = \>\"", "<>", 
+              RowBox[{"ToString", "[", 
+               RowBox[{"n", "-", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"DeleteDuplicates", "[", 
+                  RowBox[{"shot", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], 
+               "]"}]}], "]"}], ",", "16", ",", "Orange", ",", 
+            RowBox[{"Background", "\[Rule]", "Black"}]}], "]"}], "]"}]}], ",",
+         "\[IndentingNewLine]", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+        RowBox[{"Background", "->", "LightBlue"}]}], "\[IndentingNewLine]", 
+       "]"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.653997872882494*^9, 3.6539979406705427`*^9}, {
+  3.6539979831097383`*^9, 3.6539980727978735`*^9}, {3.653998183237568*^9, 
+  3.6539981922687135`*^9}, {3.6539982317182255`*^9, 3.653998256948526*^9}, {
+  3.6539982949390354`*^9, 3.6539985244174943`*^9}, {3.653998948720236*^9, 
+  3.653999027941467*^9}, {3.653999062147938*^9, 3.6539990881284122`*^9}, {
+  3.6539991228469*^9, 3.6539991322233315`*^9}, {3.6539991639130774`*^9, 
+  3.6539992767830644`*^9}, {3.6539994650260468`*^9, 3.6539995371065993`*^9}, {
+  3.6540166882028913`*^9, 3.65401670963853*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RifleProblem", "[", "7", "]"}]], "Input",
+ CellChangeTimes->{{3.6539979434106607`*^9, 3.653997947030743*^9}, 
+   3.653998015157292*^9, 3.6539982607639027`*^9, {3.653998613504952*^9, 
+   3.6539986164975033`*^9}}],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`rifle$$ = {{0.5587860505952006, 
+  0.59763832910481}, {0.21036243881723685`, 0.5620651772929872}, {
+  0.5586804153305751, 0.4670537918735189}, {0.3483624039522697, 
+  0.05665354422701263}, {0.9086209194007688, 0.31804160151694005`}, {
+  0.9069870427663306, 0.8256846394801098}, {0.4562017017475246, 
+  0.9380519838272827}}, $CellContext`shot$$ = {{{0.5587860505952006, 
+  0.59763832910481}, {0.5586804153305751, 0.4670537918735189}}, {{
+  0.21036243881723685`, 0.5620651772929872}, {0.5587860505952006, 
+  0.59763832910481}}, {{0.5586804153305751, 0.4670537918735189}, {
+  0.5587860505952006, 0.59763832910481}}, {{0.3483624039522697, 
+  0.05665354422701263}, {0.5586804153305751, 0.4670537918735189}}, {{
+  0.9086209194007688, 0.31804160151694005`}, {0.5586804153305751, 
+  0.4670537918735189}}, {{0.9069870427663306, 0.8256846394801098}, {
+  0.5587860505952006, 0.59763832910481}}, {{0.4562017017475246, 
+  0.9380519838272827}, {0.5587860505952006, 
+  0.59763832910481}}}, $CellContext`nearest$$}, 
+  TagBox[
+   GraphicsBox[{
+     DynamicBox[Typeset`ToBoxes[
+       Arrow[$CellContext`shot$$ = Table[{
+           Part[$CellContext`rifle$$, $CellContext`j], 
+           First[
+            Nearest[
+             Table[
+              Part[$CellContext`rifle$$, $CellContext`i], {$CellContext`i, 
+               Delete[
+                Range[7], $CellContext`j]}], 
+             Part[$CellContext`rifle$$, $CellContext`j]]]}, {$CellContext`j, 
+           7}]], StandardForm, Graphics],
+      ImageSizeCache->{{73.58578643762691, 
+       327.4142135623731}, {-146.4142135623731, 173.4142135623731}}], 
+     {Opacity[0.5], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 1]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 1], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 1], 
+           Part[$CellContext`shot$$, 1, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 2]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 2], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 2], 
+           Part[$CellContext`shot$$, 2, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{-50.214201877372844`, 
+        201.25443294814892`}, {-135.51571606094325`, 115.9529187645785}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 3]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 3], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 3], 
+           Part[$CellContext`shot$$, 3, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 4]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 4], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 4], 
+           Part[$CellContext`shot$$, 4, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{-40.4918005368845, 290.6160065746142}, {
+        6.107474066753184, 337.21528117825187`}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 5]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 5], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 5], 
+           Part[$CellContext`shot$$, 5, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{189.65073875279293`, 
+        462.73908137695923`}, {-58.72110625666454, 214.36723636750168`}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 6]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 6], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 6], 
+           Part[$CellContext`shot$$, 6, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{176.18107208278775`, 
+        475.0356246234377}, {-253.84806184368432`, 45.00649069696556}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 7]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 7], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 7], 
+           Part[$CellContext`shot$$, 7, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{36.13941220456711, 
+        291.4134096501556}, {-272.3976609167887, -17.12366347120026}}]}, {
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 1]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 1]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 2]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 2]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 3]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 3]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 4]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 4]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 5]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 5]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 6]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 6]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 7]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 7]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]]}},
+    ImagePadding->{{0., 1.}, {1., 0.}},
+    PlotLabel->FormBox[
+      DynamicBox[
+       ToBoxes[
+        Style[
+         Framed[
+          StringJoin["Survivors = ", 
+           ToString[7 - Length[
+             DeleteDuplicates[
+              Part[$CellContext`shot$$, All, 2]]]]]], 16, Orange, Background -> 
+         Black], TraditionalForm]], TraditionalForm],
+    PlotRange->{{0., 1.}, {0., 1.}},
+    PlotRangePadding->Automatic],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  DynamicModuleValues:>{}]], "Output",
+ CellChangeTimes->{{3.6539979473939185`*^9, 3.6539979639238195`*^9}, {
+   3.6539980074431515`*^9, 3.6539980152608156`*^9}, 3.6539980762309055`*^9, {
+   3.653998258088316*^9, 3.6539982608877068`*^9}, {3.6539983137084074`*^9, 
+   3.6539983596288733`*^9}, {3.6539984404285564`*^9, 3.653998525836152*^9}, {
+   3.6539986138339243`*^9, 3.6539986166168847`*^9}, {3.6539990755295515`*^9, 
+   3.6539990902661486`*^9}, 3.653999133399562*^9, {3.653999237865444*^9, 
+   3.653999278430339*^9}, {3.65399947841411*^9, 3.6539994941496367`*^9}, {
+   3.6539995323245497`*^9, 3.65399953849798*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RifleProblem", "[", "12", "]"}]], "Input",
+ CellChangeTimes->{{3.6539979496115274`*^9, 3.653997952574213*^9}, {
+  3.6539987229358873`*^9, 3.6539987234317007`*^9}, {3.653999583346548*^9, 
+  3.653999583434585*^9}}],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`rifle$$ = {{0.5427908030322077, 
+  0.3265505475657553}, {0.4480044617267088, 0.7788447771137542}, {
+  0.5538489565219457, 0.6335143658476693}, {0.5431240672065843, 
+  0.44351302823133953`}, {0.45564227642899285`, 0.36123777994044337`}, {
+  0.3652044642486422, 0.43392577118173525`}, {0.3530822559318656, 
+  0.2988078384328705}, {0.3124583799249883, 0.6264701829358511}, {
+  0.3589930743385782, 0.533717903851178}, {0.4562910775003296, 
+  0.44665810318877686`}, {0.4529075421014027, 0.5352196988608573}, {
+  0.542310760116638, 
+  0.5352241922725864}}, $CellContext`shot$$ = CompressedData["
+1:eJxTTMoPSmVmYGDgAWImKJb7WXSxK+6h/R6vSS4mz67YOzP8sbDTvGsfobBb
+oFXuuv01pqfPpdbcsT+49PRD7zcv7CvfpxYp7nxof31K9Ov9rk8w+NKc8RJz
+oh7a2123qulTeGjvHOK10zXxob3JgmflLUl37KOar9TeN75rv0E65x73tDsY
+9qHLd7tO7m6Kv24vUc8+s+DobQz5D3MbA5/NuGaf87js5Sr5yxjm3XxyIi/w
+/2X7xbIlRtw8T+zbphSK7ft5zd5/8qmJ5iIPMfhGf6Jf5f+5Y8/CeZO/Feh+
+Qu4lpB49PNDVAwDHb7s8
+  "], $CellContext`nearest$$}, 
+  TagBox[
+   GraphicsBox[{
+     DynamicBox[Typeset`ToBoxes[
+       Arrow[$CellContext`shot$$ = Table[{
+           Part[$CellContext`rifle$$, $CellContext`j], 
+           First[
+            Nearest[
+             Table[
+              Part[$CellContext`rifle$$, $CellContext`i], {$CellContext`i, 
+               Delete[
+                Range[12], $CellContext`j]}], 
+             Part[$CellContext`rifle$$, $CellContext`j]]]}, {$CellContext`j, 
+           12}]], StandardForm, Graphics],
+      ImageSizeCache->{{177.5857864376269, 
+       323.3455233840733}, {-149.4142135623731, 130.4142135623731}}], 
+     {Opacity[0.5], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 1]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 1], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 1], 
+           Part[$CellContext`shot$$, 1, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{258.1708464948865, 366.03857699215234`}, {
+        58.299569901057765`, 166.16730039832362`}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 2]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 2], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 2], 
+           Part[$CellContext`shot$$, 2, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{154.22404880958533`, 
+        360.9810821761299}, {-251.21426352368107`, -44.45723015713648}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 3]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 3], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 3], 
+           Part[$CellContext`shot$$, 3, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 4]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 4], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 4], 
+           Part[$CellContext`shot$$, 4, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{262.33463001079986`, 
+        362.2580472767721}, {-4.981699866006409, 94.94171739996585}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 5]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 5], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 5], 
+           Part[$CellContext`shot$$, 5, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 6]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 6], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 6], 
+           Part[$CellContext`shot$$, 6, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{157.1085587601547, 
+        262.8765751257839}, {-2.391326612312426, 103.37668975331681`}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 7]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 7], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 7], 
+           Part[$CellContext`shot$$, 7, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{133.98384181194507`, 272.06075250970036`}, {
+        59.14703755222175, 197.2239482499771}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 8]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 8], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 8], 
+           Part[$CellContext`shot$$, 8, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{119.99512538124051`, 
+        239.33201153249604`}, {-119.88879826374225`, -0.5519121124866899}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 9]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 9], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 9], 
+           Part[$CellContext`shot$$, 9, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 10]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 10], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 10], 
+           Part[$CellContext`shot$$, 10, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 11]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 11], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 11], 
+           Part[$CellContext`shot$$, 11, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}], 
+      DynamicBox[Typeset`ToBoxes[
+        If[
+         Not[
+          MemberQ[
+           Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 12]]], 
+         Disk[
+          Part[$CellContext`rifle$$, 12], 
+          EuclideanDistance[
+           Part[$CellContext`rifle$$, 12], 
+           Part[$CellContext`shot$$, 12, 2]]], {}], StandardForm, Graphics],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}]}, {
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 1]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 1]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 2]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 2]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 3]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 3]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 4]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 4]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 5]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 5]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 6]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 6]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 7]], DynamicBox[
+       ToBoxes[
+        If[MemberQ[
+          Part[$CellContext`shot$$, All, 2], Part[$CellContext`rifle$$, 7]], 
+          Style["\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 8]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 8]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 9]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 9]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 10]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 10]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 11]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 11]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]], 
+      LocatorBox[Dynamic[Part[$CellContext`rifle$$, 12]], DynamicBox[
+       ToBoxes[If[
+         MemberQ[Part[$CellContext`shot$$, All, 2], 
+           Part[$CellContext`rifle$$, 12]], Style[
+          "\[FreakedSmiley]", 36, Background -> Red], Style[
+          "\[HappySmiley]", 36, Background -> Green]], StandardForm]]]}},
+    Background->RGBColor[0.87, 0.94, 1],
+    ImagePadding->{{0., 1.}, {1., 0.}},
+    ImageSize->Large,
+    PlotLabel->FormBox[
+      DynamicBox[
+       ToBoxes[
+        Style[
+         Framed[
+          StringJoin["Survivors = ", 
+           ToString[12 - Length[
+             DeleteDuplicates[
+              Part[$CellContext`shot$$, All, 2]]]]]], 16, Orange, Background -> 
+         Black], TraditionalForm]], TraditionalForm],
+    PlotRange->{{0., 1.}, {0., 1.}},
+    PlotRangePadding->Automatic],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  DynamicModuleValues:>{}]], "Output",
+ CellChangeTimes->{{3.653997952849021*^9, 3.6539979665746956`*^9}, 
+   3.6539980122275586`*^9, 3.6539980784714828`*^9, 3.6539987235729647`*^9, 
+   3.653999583639786*^9, {3.6540166942586474`*^9, 3.6540167123455176`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["unrelated experiment", "Subsubsection",
+ CellChangeTimes->{{3.6540162755703278`*^9, 3.654016281850438*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "rifle", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rifle", "[", "n_", "]"}], ":=", 
+  RowBox[{"RandomReal", "[", 
+   RowBox[{"1", ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "2"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6540115291633253`*^9, 3.654011529410692*^9}, {
+  3.6540115735227156`*^9, 3.6540116040987225`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nearest", "[", 
+   RowBox[{"pt_", ",", "rifle_"}], "]"}], ":=", 
+  RowBox[{"Nearest", "[", 
+   RowBox[{"rifle", ",", "pt", ",", "7"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.654011566048287*^9, 3.654011570721941*^9}, {
+   3.654011606954216*^9, 3.6540116514174647`*^9}, {3.6540117853284283`*^9, 
+   3.6540117894242177`*^9}, {3.6540118276962233`*^9, 3.654011836575699*^9}, 
+   3.65401194343897*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pt", "=", 
+  RowBox[{"{", 
+   RowBox[{"0.5", ",", "0.5"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.654011665921829*^9, 3.6540116722012744`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.5`", ",", "0.5`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.654011672529063*^9, {3.654011829085383*^9, 3.654011838120906*^9}, 
+   3.6540119446642723`*^9, 3.6540162523259354`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"r", "=", 
+   RowBox[{"rifle", "[", "50", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.654011767432222*^9, 3.6540117717523427`*^9}, {
+   3.6540119307750483`*^9, 3.6540119308781476`*^9}, 3.6540125283619623`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Deploy", "@", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Opacity", "[", ".5", "]"}], ",", "Orange", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Disk", "[", 
+            RowBox[{"#", ",", ".1"}], "]"}], "&"}], "/@", "r"}]}], "}"}]}], 
+      ",", 
+      RowBox[{"Locator", "[", 
+       RowBox[{"Dynamic", "[", "pt", "]"}], "]"}], ",", 
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Arrow", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"pt", ",", "#"}], "}"}], "&"}], "/@", 
+         RowBox[{"nearest", "[", 
+          RowBox[{"pt", ",", "r"}], "]"}]}], "]"}]}]}], "}"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6540115354724035`*^9, 3.6540115574742146`*^9}, {
+  3.654011659481591*^9, 3.654011709217269*^9}, {3.654011744714097*^9, 
+  3.654011808128458*^9}, {3.6540118439601765`*^9, 3.6540119156468863`*^9}, {
+  3.6540119954859896`*^9, 3.654012040750193*^9}, {3.6540125485552187`*^9, 
+  3.6540125499215136`*^9}, {3.6540133235709543`*^9, 3.6540133290036287`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  GraphicsBox[{
+    DynamicBox[Typeset`ToBoxes[{
+       Opacity[0.5], Orange, 
+       Map[Disk[#, 0.1]& , $CellContext`r]}, StandardForm, Graphics],
+     ImageSizeCache->{{-35.74626988655696, 
+      381.274202251312}, {-213.03164319970364`, 205.69443537043963`}}], 
+    LocatorBox[Dynamic[$CellContext`pt]], 
+    DynamicBox[Typeset`ToBoxes[
+      Arrow[
+       Map[{$CellContext`pt, #}& , 
+        $CellContext`nearest[$CellContext`pt, $CellContext`r]]], StandardForm,
+       Graphics],
+     ImageSizeCache->{{50.58578643762691, 191.4142135623731}, {
+      63.58578643762692, 146.0391575528074}}]},
+   ImagePadding->{{0., 0.}, {0., 0.}},
+   PlotRange->{{0., 1.}, {0., 1.}},
+   PlotRangePadding->Automatic],
+  Deploy,
+  DefaultBaseStyle->"Deploy"]], "Output",
+ CellChangeTimes->{{3.6540118833725767`*^9, 3.6540119461527953`*^9}, {
+   3.654012003855147*^9, 3.654012041013246*^9}, 3.6540123537130604`*^9, 
+   3.654012441178842*^9, {3.654012550143938*^9, 3.654012557294978*^9}, 
+   3.654013275105855*^9, 3.6540133293646564`*^9, 3.654016253809326*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"While", "[", 
+  RowBox[{"True", ",", 
+   RowBox[{
+    RowBox[{"Pause", "[", ".05", "]"}], ";", 
+    RowBox[{"r", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"FractionalPart", "[", 
+         RowBox[{"#", "+", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", ".01"}], "}"}]}], "]"}], "&"}], ",", "r"}], 
+      "]"}]}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6540132126606407`*^9, 3.654013302034524*^9}, {
+  3.6540133728023567`*^9, 3.654013377370697*^9}}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.654013475751484*^9, 3.654016269405693*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 921},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 100, 1, 101, "Title"],
+Cell[683, 25, 6361, 147, 212, "Input"],
+Cell[CellGroupData[{
+Cell[7069, 176, 235, 4, 31, "Input"],
+Cell[7307, 182, 8546, 189, 405, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15890, 376, 236, 4, 31, "Input"],
+Cell[16129, 382, 12381, 282, 621, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28547, 669, 113, 1, 39, "Subsubsection"],
+Cell[28663, 672, 399, 10, 52, "Input"],
+Cell[29065, 684, 433, 9, 31, "Input"],
+Cell[CellGroupData[{
+Cell[29523, 697, 169, 4, 31, "Input"],
+Cell[29695, 703, 222, 5, 31, "Output"]
+}, Open  ]],
+Cell[29932, 711, 247, 5, 31, "Input"],
+Cell[CellGroupData[{
+Cell[30204, 720, 1377, 36, 31, "Input"],
+Cell[31584, 758, 1069, 24, 375, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32690, 787, 520, 15, 31, "Input"],
+Cell[33213, 804, 99, 1, 31, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
